@@ -1,0 +1,234 @@
+@import "base/reset.scss"
+@import "base/normalize.scss"
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap')
+
+$white: #FFFFFF
+// PRIMARY COLOR OF THE WEBSITE
+$light-green: #C1FF75
+$background: #11071F
+$purple-dark: #2C1250
+// STROKE
+$purple: #8F4DD1
+
+// TYPOGRAPHY
+$font-size-paragraph: 1.4rem
+$font-size-h2: 2.6rem
+
+@mixin icons
+    content: ""
+    width: 2.4rem
+    height: 2.4rem
+    background-repeat: no-repeat
+    background-size: contain
+    display: block
+
+@mixin icons-positioning
+    position: relative
+    display: flex
+    align-items: center
+    gap: .5rem
+
+*
+    box-sizing: border-box
+
+html
+    font-size: 62.5%
+
+body
+    background-color: $background
+    font-family: 'Noto Sans', sans-serif
+    font-weight: 400
+    font-size: $font-size-paragraph
+    color: $white
+    line-height: 150%
+
+a
+    text-decoration: none
+
+.gradient
+    position: absolute
+    background-image: url(../img/gradient.svg)
+    background-repeat: no-repeat
+    background-size: contain
+    display: block
+    height: 40.8rem
+    width: 100%
+    max-width: 5rem
+    z-index: -1
+    margin: 0 auto
+    left: 0
+    right: 0
+    top: 0
+
+.container
+    max-width: 117.2rem
+    padding: 0 1.5rem
+    margin: 0 auto
+
+.header
+    background-color: $purple-dark
+    padding: 2.8rem 0
+    container-type: inline-size
+    container-name: header
+    margin-bottom: 10.3rem
+    &__title
+        margin: 0
+        color: $white
+        font-size: 1.8rem
+        text-transform: uppercase
+        letter-spacing: 0.02em
+        font-weight: 700
+        display: flex
+        align-items: center
+        justify-content: center
+        gap: 1.8rem
+        text-align: center
+        &::before, &::after
+            content: ""
+            display: block
+            background-image: url(../icons/figure.svg)
+            background-size: contain
+            background-repeat: no-repeat
+            background-position: center center
+            width: 2.4rem
+            height: 1.7rem
+
+@container header (min-width: 800px)
+    .header__title
+        font-size: clamp(1.8rem, 2cqw, 3rem)
+        justify-content: flex-start
+        &::before
+            width: clamp(2.4rem, 3cqw, 5.1rem)
+            height: clamp(1.7rem, 3cqw, 3.6rem)
+        &::after
+            display: none
+
+.articles
+    container-type: inline-size
+    container-name: article
+    margin-top: 1.8rem
+    flex: 1 1 40ch
+
+.article-post
+    background-color: $purple-dark
+    border-top: 5px solid $light-green
+    padding: 2.5rem 1.8rem
+    &__author
+        color: $light-green
+        font-size: 1.6rem
+        font-weight: 600
+        grid-area: author 
+    &__link
+        color: $white
+        font-size: $font-size-h2
+        font-weight: 700
+    &__header
+        display: grid
+        grid-template-columns: 50px 1fr
+        grid-template-areas: 'avatar author' 'title title'
+        align-items: center
+        gap: 2rem
+        grid-area: header
+    &__title
+        grid-area: title
+        margin: 0
+        margin-bottom: 2.2rem
+    &__content
+        grid-area: text
+    &__text
+        margin-bottom: 2.8rem
+    &__footer
+        color: rgba(255, 255, 255, 0.5)
+        font-weight: 700
+        display: flex
+        align-items: center
+        justify-content: space-between
+        margin-top: 3rem
+        grid-area: footer
+    &__date
+        @include icons-positioning
+        &::before
+            @include icons
+            background-image: url(../icons/date.svg)
+    &__likes
+        @include icons-positioning
+        &::before
+            background-image: url(../icons/like.svg)
+            @include icons
+    &__comments
+        @include icons-positioning
+        &::before
+            @include icons
+            background-image: url(../icons/comment.svg)
+    &__info
+        display: flex
+        align-items: center
+        gap: 1.2rem
+.btn
+    font-size: 1rem
+    font-weight: 700
+    border: 1px solid $purple
+    padding: .9rem 3rem
+    border-radius: 1rem
+    color: $white
+    text-transform: uppercase
+
+.avatar
+    margin: 0
+    grid-area: avatar
+    &__picture
+        position: relative
+        width: 5rem
+        height: 5rem
+        &::before
+            content: ""
+            background-image: url(../icons/figure-avatar.svg)
+            background-repeat: no-repeat
+            background-size: contain
+            display: block
+            width: 1rem
+            height: 1rem
+            position: absolute
+            top: 0
+            right: 0
+    &__img
+        display: block
+        width: 5rem
+        height: 5rem
+
+.articles-flex
+    margin-top: 1.8rem
+    display: flex
+    flex-wrap: wrap
+    gap: 0 2vw
+    flex: 1 1 40ch
+
+@container article (min-width: 60ch)
+    .article-post
+        padding: 3rem 5rem
+        &__header
+            grid-template-columns: 8.1rem 1fr
+            grid-template-areas: 'avatar author' 'avatar title'
+            gap: 1rem 3.9rem
+    .avatar
+        &__img
+            width: 8rem
+            height: 8rem
+        &__picture
+            width: 8rem
+            height: 8rem
+            &::before
+                width: 1.7rem
+                height: 1.7rem
+
+@container article (min-width: 70ch)
+    .article-post
+        display: grid
+        grid-template-columns: 8rem 1fr 12rem
+        grid-template-areas: "header header ." ". text footer"
+        gap: 2rem 3.9rem
+        &__footer
+            flex-direction: column
+            margin-top: 0
+            justify-content: flex-start
+            gap: 2rem

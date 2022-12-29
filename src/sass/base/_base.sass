@@ -1,0 +1,26 @@
+// The width and height properties include the content, padding, and border
+*
+    box-sizing: border-box
+
+// THE DEFAULT FONT-SIZE SET TO 10PX (62.5%) FOR COMFORTABLE REM USAGE
+html
+    font-size: 62.5%
+    // @include respond(tab-land)
+    //     font-size: 56.25%
+    // @include respond(tab-port)
+    //     font-size: 50%
+    // @include respond(phone)
+    //     font-size: 30%
+    // @include respond(big-screen)
+    //     font-size: 75%
+
+body
+    background-color: $background
+
+.container
+    max-width: 117.2rem
+    margin: 0 auto
+    // @include respond(tab-port)
+    //     max-width: 71.4rem
+    // @include respond(tab-port)
+    //     max-width: 34.5rem
